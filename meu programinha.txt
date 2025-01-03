@@ -1,0 +1,95 @@
+<html>
+
+<script src="http://canzian.fsc.ufsc.br/MathJax/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<meta charset="utf-8">
+
+
+<ol style='background-color: LightBlue'>
+
+<body>
+<p style="text-align:center">
+<a href="https://cfm.ufsc.br">
+<img src= "1.png" width='380' height='110' />
+</a>
+
+<p style="text-align:center">
+<b> CALCULADORA DE ERRO ALEATÓRIO PROVÁVEL </b> - Introdução à Física Computacional/UFSC </p>
+
+<p style="text-align:center">
+Digite os valores desejados separados por vírgula. Em números decimais adicione ".": 
+	<input type="text" id="myText" value="00,00,00,00"> 
+	<input type="text" id="erroescala" value="0.000"> (Erro de escala) 
+	<input type="text" id="unidade" value="U.M."> (Unidade de medida)</p>
+
+<p style="text-align:center">
+Clique no botão para efetuar a média dos valores, seu desvio padrão e erro aleatório provável, respectivamente </p>
+
+<p style="text-align:center">
+<button onclick="myFunction()">Efetuar</button>
+
+<ul>
+
+<li> <p style="text-align:center"> 
+<b> Média calculada dos valores </b> </p>
+<p style="text-align:center">
+O valor mais provável de uma grandeza é a média aritmética das diversas medidas da grandeza sendo representada por </p>
+<p style="text-align:center">
+<img src="mediasomatorio.gif"/>, tal que
+<p style="text-align:center"> <img src = "barx.gif"/> = <style="text-align:center" id="media"></p>
+
+<li> <p style="text-align:center">
+<b> Desvio da medida </b> </p>
+<p style="text-align:center">
+É a diferença entre o valor de uma medida individual (xi) e da grandeza e seu valor mais provável (x) </p>
+<p style="text-align:center">
+<img src="desvio medida.gif"/> </p>
+
+<li> <p style="text-align:center">
+<b> Desvio padrão </b> </p>
+<p style="text-align:center">
+É um dos fatores utilizados pela estatística para indicar a tendência das medidas de se distribuírem em torno do seu valor mais provável </p>
+<p style="text-align:center">
+<img src="desvio padrão.gif"/> , tal que
+<p style="text-align:center">
+<img src="sigma.gif"/> =  <style="text-align:center" id= "desvioPadrao">
+
+<li> <p style="text-align:center">
+<b> Erro aleatório provável </b> </p>
+<p style="text-align:center">
+Tendo-se M conjuntos de n medidas de uma grandeza, obtém-se, para cada conjunto uma média m. O desvio padrão da média sigma.m, é um dos indicadores da tendência do conjunto de M médias m se distribuir em torno do seu valor médio.  </p>
+<p style="text-align:center">
+<img src="CodeCogsEqn.gif"/> , tal que 
+<p style="text-align:center">
+<img src = "sigmam.gif"/> = <style="text-align:center"  id="demo"> </p>
+
+</ul>
+<script>
+function myFunction() {
+ var x = document.getElementById("myText").value;
+ var res = x.split(",");
+ //Média
+ var media = 0;
+ for (var i = 0; i < res.length; i++)
+ {
+  media += parseFloat(res[i]);
+ }
+ media = media / res.length;
+ var desvioPadrao = 0;
+ for (var i = 0; i < res.length; i++)
+ {
+  desvioPadrao += (parseFloat(res[i]) - media) * (parseFloat(res[i]) - media);
+ }
+ desvioPadrao = Math.sqrt(desvioPadrao / (res.length - 1));
+
+ var desvioPadraoDaMedia = desvioPadrao / Math.sqrt(res.length);
+ 
+ document.getElementById("media").innerHTML = media;
+ document.getElementById("desvioPadrao").innerHTML = desvioPadrao;;
+ document.getElementById("demo").innerHTML = desvioPadraoDaMedia;
+}
+
+
+</script>
+
+</body>
+</html>
